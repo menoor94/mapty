@@ -1,0 +1,26 @@
+@import "tailwindcss";
+* {
+  outline: none;
+}
+
+.leaflet-popup .leaflet-popup-content-wrapper {
+  background-color: var(--color-gray-900);
+  border-radius: 3px;
+  color: white;
+  font-size: 14px;
+  font-family: sans-serif;
+}
+.leaflet-popup .leaflet-popup-tip {
+  background-color: var(--color-gray-900);
+}
+.running-popup .leaflet-popup-content-wrapper {
+  border-left: solid 5px red;
+}
+
+.cycling-popup .leaflet-popup-content-wrapper {
+  border-left: solid 5px blue;
+}
+/* #workout-form {
+  display: none;
+  transition: all 0.3s ease-in-out;
+} */
