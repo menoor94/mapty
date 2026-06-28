@@ -11,6 +11,47 @@ const workoutDuration = document.getElementById("workout-duration");
 const workoutElev = document.getElementById("workout-elev");
 let mapEvent, map;
 
+class Workout {
+  date = new Date();
+  id = (Date.now() + " ").slice(-10);
+  constructor(coords, duration, distance) {
+    this.coords = coords;
+    this.duration = duration;
+    this.distance = distance;
+  }
+}
+
+class Running extends Workout {
+  constructor(coords, duration, distance, cadence) {
+    super(coords, duration, distance);
+    this.cadence = cadence;
+    this.calcPace();
+  }
+
+  calcPace() {
+    //Pace in KM
+    return (this.pace = this.duration / this.distance);
+  }
+}
+
+class Cycling extends Workout {
+  constructor(coords, duration, distance, elev) {
+    super(coords, duration, distance);
+    this.elev = elev;
+    this.calcSpeed();
+  }
+
+  calcSpeed() {
+    //KM/h
+    this.speed = this.distance / (this.duration / 60);
+    return this.speed;
+  }
+}
+// console.log(new Running([12.42, 41.14], 12, 3, 300));
+// console.log(new Cycling([12.42, 41.14], 12, 4, 30));
+
+//////////////////////////////////
+//App class
 class App {
   #map;
   #mapEvent;
