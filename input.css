@@ -2,6 +2,13 @@
 * {
   outline: none;
 }
+.scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
 
 .leaflet-popup .leaflet-popup-content-wrapper {
   background-color: var(--color-gray-900);
@@ -13,14 +20,17 @@
 .leaflet-popup .leaflet-popup-tip {
   background-color: var(--color-gray-900);
 }
-.running-popup .leaflet-popup-content-wrapper {
+.Running-popup .leaflet-popup-content-wrapper {
   border-left: solid 5px red;
 }
 
-.cycling-popup .leaflet-popup-content-wrapper {
+.Cycling-popup .leaflet-popup-content-wrapper {
   border-left: solid 5px blue;
 }
 /* #workout-form {
   display: none;
   transition: all 0.3s ease-in-out;
-} */
+  } */
+.--workout-container {
+  border-left: solid 5px blue;
+}
