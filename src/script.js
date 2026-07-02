@@ -219,6 +219,7 @@ class App {
 
     deleteBtn.parentElement.remove();
     this._saveData();
+    location.reload();
   }
 
   // _deleteWorkout(e) {
