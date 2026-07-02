@@ -31,6 +31,9 @@
   display: none;
   transition: all 0.3s ease-in-out;
   } */
-.--workout-container {
+.--workout-container-Running {
+  border-left: solid 5px red;
+}
+.--workout-container-Cycling {
   border-left: solid 5px blue;
 }
