@@ -17,7 +17,7 @@ class App {
     dom.workoutType.addEventListener("change", this._toggleElevationField);
     dom.workoutList.addEventListener("click", this._moveToPopup.bind(this));
     dom.workoutList.addEventListener("click", this._deleteWorkout.bind(this));
-    // this._saveData();
+    dom.deleteAllWorkouts.addEventListener("click", this._deleteAllWorkouts);
   }
 
   _getPosition() {
@@ -219,6 +219,11 @@ class App {
 
     deleteBtn.parentElement.remove();
     this._saveData();
+    location.reload();
+  }
+
+  _deleteAllWorkouts() {
+    localStorage.clear();
     location.reload();
   }
 

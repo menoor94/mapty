@@ -7,4 +7,5 @@ export const dom = {
   workoutDuration: document.getElementById("workout-duration"),
   workoutElev: document.getElementById("workout-elev"),
   workoutList: document.getElementById("workout-list"),
+  deleteAllWorkouts: document.getElementById("del-all-workouts"),
 };
