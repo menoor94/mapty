@@ -8,4 +8,6 @@ export const dom = {
   workoutElev: document.getElementById("workout-elev"),
   workoutList: document.getElementById("workout-list"),
   deleteAllWorkouts: document.getElementById("del-all-workouts"),
+  sortDistanceBtn: document.getElementById("sort-distance-btn"),
+  sortDurationBtn: document.getElementById("sort-duration-btn"),
 };

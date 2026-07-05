@@ -104,9 +104,24 @@
           </form>
         </div>
 
+        <div class="mt-10 mb-2 flex flex-col md:flex-row gap-2">
+          <button
+            id="sort-distance-btn"
+            class="bg-gray-700 text-white text-sm lg:text-[15px] p-1 rounded cursor-pointer hover:bg-gray-800"
+          >
+            Sort by distance
+          </button>
+
+          <button
+            id="sort-duration-btn"
+            class="bg-gray-700 text-white text-sm lg:text-[15px] p-1 rounded cursor-pointer hover:bg-gray-800"
+          >
+            Sort by duration
+          </button>
+        </div>
         <ul
           id="workout-list"
-          class="scrollbar container text-white mt-10 h-7/12 overflow-auto list-none"
+          class="scrollbar container text-white h-7/12 overflow-auto list-none"
         ></ul>
       </div>
       <div id="map" class="w-2/3 h-full bg-neutral-400"></div>

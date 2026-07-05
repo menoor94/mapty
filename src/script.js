@@ -8,6 +8,7 @@ class App {
   #mapEvent;
   #mapZoomLvl = 13;
   #workouts = [];
+  // #routeLine;
 
   constructor() {
     this._getPosition();
@@ -18,6 +19,14 @@ class App {
     dom.workoutList.addEventListener("click", this._moveToPopup.bind(this));
     dom.workoutList.addEventListener("click", this._deleteWorkout.bind(this));
     dom.deleteAllWorkouts.addEventListener("click", this._deleteAllWorkouts);
+    dom.sortDistanceBtn.addEventListener(
+      "click",
+      this._sortWorkoutsDistance.bind(this),
+    );
+    dom.sortDurationBtn.addEventListener(
+      "click",
+      this._sortWorkoutsDuration.bind(this),
+    );
   }
 
   _getPosition() {
@@ -93,8 +102,6 @@ class App {
         return alert("Enter only positive numbers");
       }
       workout = new Running([lat, lng], duration, distance, cadence);
-      // console.log(workout);
-      // console.log(this.#workouts);
     }
     //If workout cycling create cycling object
     if (type === "Cycling") {
@@ -121,6 +128,8 @@ class App {
     this._renderWorkouts(workout);
 
     this._saveData();
+
+    // this._polylineMap();
   }
 
   _renderWorkoutMarker(workout) {
@@ -226,6 +235,70 @@ class App {
     localStorage.clear();
     location.reload();
   }
+
+  _renderHTML(w) {
+    const html = `
+    <li
+            data-id="${w.id}"
+            class="--workout-container --workout-container-${w.type}  my-3 w-full h-44 md:h-24 flex flex-col justify-center pl-5 bg-gray-700 rounded relative"
+          >
+            <button
+
+             class="--delete-workout absolute top-0 right-1 cursor-pointer  text-center "
+            >x</button>
+            <h1 class="md:text-xl absolute top-1">${w.description}</h1>
+            <div
+              class="w-full flex flex-col md:flex-row justify-between container mt-10"
+            >
+              <span>${w.type === "Running" ? "🏃‍♂️" : "🚴‍♂️"} ${w.distance} km</span>
+              <span>⏲ ${w.duration} min</span>
+              <span>⚡ ${w.type === "Running" ? `${w.pace.toFixed(1)} pace` : `${w.speed.toFixed(1)} speed`}</span>
+              <span class="mr-4"> ${w.type === "Running" ? `${w.cadence} steps/m` : `${w.elev} elevation`}</span>
+            </div>
+          </li>
+    `;
+
+    dom.workoutList.insertAdjacentHTML("beforeend", html);
+  }
+
+  _sortWorkoutsDistance() {
+    const sorted = this.#workouts.sort((a, b) => a.distance - b.distance);
+
+    dom.workoutList.innerHTML = "";
+
+    sorted.map((w) => {
+      this._renderHTML(w);
+    });
+  }
+
+  _sortWorkoutsDuration() {
+    const sorted = this.#workouts.sort((a, b) => a.duration - b.duration);
+
+    dom.workoutList.innerHTML = "";
+
+    sorted.map((w) => {
+      this._renderHTML(w);
+    });
+  }
+
+  //Drawing lines on map to connect each workout
+  //I think this was not necessary
+
+  // _polylineMap(arr) {
+  //   if (this.#routeLine) this.#map.removeLayer(this.#routeLine);
+
+  //   if (this.#workouts.length < 2) return;
+
+  //   const points = this.#workouts.map((w) => w.coords);
+
+  //   this.#routeLine = L.polyline(points, {
+  //     color: "#0000FF",
+  //     weight: 3,
+  //     opacity: 0.8,
+  //     dashArray: "6, 6",
+  //   }).addTo(this.#map);
+  //   console.log("hello");
+  // }
 
   // _deleteWorkout(e) {
   //   const deleteBtn = e.target.closest(".--delete-workout");
